@@ -21,11 +21,13 @@ const user = require("./routes/userRoute");
 const order = require("./routes/orderRoute");
 const contact = require("./routes/contactRoute");
 const payment = require("./routes/paymentRoute");
+const farmerQnA = require("./routes/farmerQnA_Route");
 app.use("/api/v1", product);
 app.use("/api/v1", user);
 app.use("/api/v1", order);
 app.use("/api/v1", contact);
 app.use("/api/v1", payment);
+app.use("/api/v1", farmerQnA);
 
 // app.use(express.static(path.join(__dirname, "../frontend/build")));
 
