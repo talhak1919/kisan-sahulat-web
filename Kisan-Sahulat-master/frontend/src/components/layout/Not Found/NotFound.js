@@ -8,7 +8,7 @@ const NotFound = () => {
   return (
     <div className="PageNotFound">
       <ErrorIcon />
-      <Typography>Page Not Found</Typography>
+      <Typography>Page Not Found, Try to refresh</Typography>
       <Link to="/">Home</Link>
     </div>
   );

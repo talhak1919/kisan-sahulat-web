@@ -46,6 +46,10 @@ import axios from "axios";
 import Payment from "./components/Cart/Payment";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import QuestionList from "./components/Farmer_Forum.js/questions";
+import QuestionForm from "./components/Farmer_Forum.js/create-question";
+import QuestionDetails from "./components/Farmer_Forum.js/question_details";
+import AnswerForm from "./components/Farmer_Forum.js/create-answer";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -70,6 +74,7 @@ function App() {
 
   return (
     <div>
+    
       <BrowserRouter>
         {user && (user.role === "vendor" || user.role === "admin") ? (
           <AdminHeader user={user} />
@@ -98,8 +103,39 @@ function App() {
             />
             <Route
               exact
+              path="/farmer-forum/all-questions"
+              element={
+              isAuthenticated &&
+                  user &&
+                  (user.role === "farmer") ? (
+                  <QuestionList/>
+                ) : (
+                  <NotFound />
+                )
+              }
+            />
+            <Route
+              exact
               path="/product/:id"
               element={<ProductDetails user={user} />}
+            /> 
+            <Route
+              exact
+              path="/farmer-forum/create-question"
+              element={<QuestionForm />}
+            />
+            <Route
+              exact
+              path="/farmer-forum/update-answers0/:id"
+              element={<QuestionDetails />}
+              
+            /> 
+         
+            
+            <Route
+              exact
+              path="/farmer-forum/update-answers/:id"
+              element={<AnswerForm />}
             />
             <Route exact path="/products" element={<Products user={user} />} />
             <Route

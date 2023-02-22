@@ -37,7 +37,7 @@ exports.updateQuestionAnswers= catchAsyncError(async (req, res, next) => {
   
     const updatedQuestion = await QuestionAnswer.findByIdAndUpdate(
       req.params.id, // in case of req.user.id,, it will update admin itself
-      newAnswer,
+      { $push: { answers: { $each: [newAnswer.answers] } } },
       {
         new: true, // new value true
         runValidators: true, // validate

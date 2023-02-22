@@ -3,6 +3,7 @@ import "./Header.css";
 import { SpeedDial, SpeedDialAction } from "@material-ui/lab";
 import Backdrop from "@material-ui/core/Backdrop";
 import DashboardIcon from "@material-ui/icons/Dashboard";
+import FarmerForumIcon from "@material-ui/icons/AddCircleOutline";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
@@ -35,6 +36,7 @@ const UserOptions = ({ user, toggler }) => {
       name: `Cart`,
       func: cart,
     },
+    { icon: <FarmerForumIcon />, name: "farmerForum", func: farmerForum },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
   const options2 = [
@@ -85,6 +87,10 @@ const UserOptions = ({ user, toggler }) => {
   }
   function cart() {
     navigate("/cart");
+    toggle();
+    toggler();
+  }  function farmerForum() {
+    navigate("/farmer-forum/all-questions");
     toggle();
     toggler();
   }

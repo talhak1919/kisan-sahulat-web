@@ -32,6 +32,13 @@ import {
   contactDetailsReducer,
 } from "./reducers/contactReducer";
 
+import {
+ allQuestionReducer,
+ newQuestionReducer,
+ updateAnswersReducer
+
+} from './reducers/farmerForumReducer'
+
 const reducer = combineReducers({
   products: productsReducer,
   productDetails: productDetailsReducer,
@@ -54,6 +61,9 @@ const reducer = combineReducers({
   newContact: newContactReducer,
   allContacts: allMessagesReducer,
   contactDetails: contactDetailsReducer,
+  newQuestion: newQuestionReducer,
+  allQuestion: allQuestionReducer,
+  updateAnswers: updateAnswersReducer
 });
 
 let initialState = {
