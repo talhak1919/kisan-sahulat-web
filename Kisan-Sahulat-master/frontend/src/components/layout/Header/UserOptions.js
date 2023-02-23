@@ -4,6 +4,8 @@ import { SpeedDial, SpeedDialAction } from "@material-ui/lab";
 import Backdrop from "@material-ui/core/Backdrop";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import FarmerForumIcon from "@material-ui/icons/AddCircleOutline";
+import LocationIcon from "@material-ui/icons/LocationOn";
+import WeatherIcon from "@material-ui/icons/Cloud";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ListAltIcon from "@material-ui/icons/ListAlt";
@@ -36,7 +38,9 @@ const UserOptions = ({ user, toggler }) => {
       name: `Cart`,
       func: cart,
     },
-    { icon: <FarmerForumIcon />, name: "farmerForum", func: farmerForum },
+    // { icon: <FarmerForumIcon />, name: "farmerForum", func: farmerForum },
+    // { icon: <LocationIcon />, name: "location based", func: location_based },
+    // { icon: <WeatherIcon />, name: "Weather", func: weather_based },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
   const options2 = [
@@ -46,11 +50,12 @@ const UserOptions = ({ user, toggler }) => {
   const options3 = [
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
+  
 
   if (
     user.role === "admin" ||
-    user.role === "vendor" ||
-    user.role === "farmer"
+    user.role === "vendor"
+    
   ) {
     options.unshift({
       icon: <DashboardIcon />,
@@ -67,6 +72,27 @@ const UserOptions = ({ user, toggler }) => {
       name: "Dashboard",
       func: dashboard,
     });
+  }else if (user.role === "farmer"){
+    options.unshift(
+      {
+      icon: <DashboardIcon />,
+      name: "Dashboard",
+      func: dashboard,
+    }
+    ,{
+      icon: <FarmerForumIcon />,
+      name: "Farmer Forum",
+      func: farmerForum,
+    } ,{
+      icon: <LocationIcon />,
+      name: "Location",
+      func: location_based,
+    } ,{
+      icon: <WeatherIcon />,
+      name: "Weather",
+      func: weather_based,
+    }
+    );
   }
 
   function dashboard() {
@@ -89,8 +115,18 @@ const UserOptions = ({ user, toggler }) => {
     navigate("/cart");
     toggle();
     toggler();
-  }  function farmerForum() {
+  } 
+   function farmerForum() {
     navigate("/farmer-forum/all-questions");
+    toggle();
+    toggler();
+  } 
+  function location_based() {
+    navigate("/location");
+    toggle();
+    toggler();
+  }function weather_based() {
+    navigate("/weather");
     toggle();
     toggler();
   }

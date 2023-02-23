@@ -50,6 +50,8 @@ import QuestionList from "./components/Farmer_Forum.js/questions";
 import QuestionForm from "./components/Farmer_Forum.js/create-question";
 import QuestionDetails from "./components/Farmer_Forum.js/question_details";
 import AnswerForm from "./components/Farmer_Forum.js/create-answer";
+import Weather from "./components/weather";
+import LocationG from "./components/Location";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -74,8 +76,8 @@ function App() {
 
   return (
     <div>
-    
       <BrowserRouter>
+    
         {user && (user.role === "vendor" || user.role === "admin") ? (
           <AdminHeader user={user} />
         ) : (
@@ -118,6 +120,28 @@ function App() {
               exact
               path="/product/:id"
               element={<ProductDetails user={user} />}
+            /> 
+            <Route
+              exact
+              path="/weather"
+              element={isAuthenticated &&
+                  user &&
+                  (user.role === "farmer") ? (
+                  <Weather/>
+                ) : (
+                  <NotFound />
+                )}
+            /> 
+            <Route
+              exact
+              path="/location"
+              element={isAuthenticated &&
+                  user &&
+                  (user.role === "farmer") ? (
+                  <LocationG/>
+                ) : (
+                  <NotFound />
+                )}
             /> 
             <Route
               exact
